@@ -6,7 +6,8 @@ class LoginModel {
     return conexao.query(`
         SELECT
             c.nome_cliente,
-            c.saldo_cliente  
+            c.saldo_cliente, 
+            c.id_cliente
         FROM public.login l
        LEFT JOIN 
         cliente c  on l.id_cliente  = c.id_cliente 
