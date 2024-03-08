@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
  
 const pool = new Pool({
-  host: 'localhost',
+  host: 'localhost', // colocar no .env
   port: 5432,
   database: 'banco-bench',
   user: 'CucaPost',
