@@ -10,12 +10,12 @@ class RegisterModel {
     
        `);
   }
-  insertLogin({ telefone, email, senha, id_cliente }) {
+  insertLogin({ telefone, email, senha, id_cliente, cpf}) {
     return conexao.query(`
     
     INSERT INTO public.login
-      (email, senha, telefone, id_cliente)
-    VALUES('${email}', '${senha}', '${telefone}', ${id_cliente});
+      (email, senha, telefone, id_cliente, cpf)
+    VALUES('${email}', '${senha}', '${telefone}', ${id_cliente}, '${cpf}');
     
        `);
   }
