@@ -12,8 +12,6 @@ class LoginService {
       const token = jwt.sign(
         {
           id: cliente.id_cliente,
-          nome: cliente.nome_cliente,
-          saldo: cliente.saldo_cliente,
         },
         process.env.SECRET_PASS,
         { expiresIn: 500 }
