@@ -1,19 +1,31 @@
+const BalaceModel = require("./../models/BalanceModel");
+const balanceModel = new BalaceModel();
 
-const BalaceModel = require("./../models/BalanceModel")
-const balanceModel = new (BalaceModel)
+class BalanceService {
+  async somarSaldo(req, res) {
+    console.log("Log no Balance Service Soma: ",req.body.res) 
+    const soma = (await balanceModel.balanceAdd(req.body.res)).rows;
+    if (soma) { 
+      res.status(200).json({ mensagem: "saldo atualizado Adicionado" }); 
+      console.log("Saldo Atualizado !") 
+    } else { 
+      res.status(400).json({ mensagem: "erro" }); 
+      console.log("Erro Ao Atualiza Saldo Adicionado!") 
 
-class BalanceService{
-
-  async envialService(req,res){
-   const teste = (await balanceModel.balanceGet(req)).rows
-        if (teste) {
-            res.status(200).json({mensagem: "mensagem"})
-        }
-        else{
-
-
-        }
     }
+  }
+  async subtrairSaldo(req, res) {
+    console.log("Log no Balance Service Sub: ",req.body.res)
+    const subtracao = (await balanceModel.balanceRemove(req.body.res)).rows;
+    if (subtracao) { 
+      res.status(200).json({ mensagem: "saldo atualizado Removido" }); 
+      console.log("Saldo Atualizado Removido !") 
+    } else { 
+      res.status(400).json({ mensagem: "erro" }); 
+      console.log("Erro Ao Atualiza Saldo !")
+
+    }
+  }
 
 
 }
