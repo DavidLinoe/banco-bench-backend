@@ -6,22 +6,29 @@ const userModel = new UserModel();
 
 class UserService {
   async enviarModel(req, res) {
-    const token = req.body.id_cliente;
+ 
+    try {
 
-    console.log("Token User : ", token);
+      const token = req.body.id_cliente;
 
-    const verifyToken = jwt.verify(token, process.env.SECRET_PASS);
+      console.log("Token User : ", token);
+  
+      const verifyToken = jwt.verify(token, process.env.SECRET_PASS);
+  
+      console.log("Verify Token User: ", verifyToken.id);
+  
 
-    console.log("Verify Token User: ", verifyToken.id);
-
-    const [user] = (await userModel.searchUser(verifyToken.id)).rows;
-    console.log(user);
-    if (user) {
-   
-      res.status(200).json({ mensagem: "Usuario Enviado", ...user });
-      console.log("Log no user... :", user);
-    } else {
+      const [user] = (await userModel.searchUser(verifyToken.id)).rows;
+      console.log(user);
+      if (user) {
+        res.status(200).json({ mensagem: "Usuario Enviado", ...user });
+        console.log("Log no user... :", user);
+      } else {
+        res.status(404).json({ mensagem: "Usuario Negado" });
+      }
+    } catch (error) {
       res.status(404).json({ mensagem: "Usuario Negado" });
+      console.error("Erro Sessao Expirada!: ", error.message);
     }
   }
 }
