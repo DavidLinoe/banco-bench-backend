@@ -1,16 +1,35 @@
 const pool = require("./../db/pg");
 
 class BalanceModel {
-  balanceGet(id_saldo) {
+  balanceAdd({id_cliente,saldo}) {
     return pool.query(`
 
-        SELECT
-            s.entradas_saldo,
-            s.saidas_saldo  
-        FROM
-            saldo s  
-        WHERE
-            id_saldo = ${+id_saldo}
+    update cliente 
+
+    set saldo_cliente = saldo_cliente + ${saldo} 
+     
+    FROM 
+        login l  
+    
+    WHERE  
+        cliente.id_cliente = ${id_cliente}
+
+`);
+  }
+  balanceRemove({id_cliente, saldo}) {
+    return pool.query(` 
+ 
+    update cliente 
+
+    set saldo_cliente = saldo_cliente - ${saldo}
+     
+    FROM 
+        login l 
+    
+    WHERE  
+        cliente.id_cliente = ${id_cliente}
+
+  
 `);
   }
 }
