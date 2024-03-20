@@ -14,7 +14,7 @@ class LoginService {
           id: cliente.id_cliente,
         },
         process.env.SECRET_PASS,
-        { expiresIn: 500 }
+        { expiresIn: 2000 }
       );
 
       console.log("Token: ", token);
