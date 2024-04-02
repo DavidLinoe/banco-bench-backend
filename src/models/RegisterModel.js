@@ -52,12 +52,12 @@ class RegisterModel {
     
        `);
   }
-  insertLogin({ telefone, email, senha, id_cliente, cpf }) {
+  insertLogin({ telefone, email,  id_cliente, cpf }) {
     return conexao.query(`
     
     INSERT INTO public.login
-      (email, senha, telefone, id_cliente, cpf)
-    VALUES('${email}', '${senha}', '${telefone}', ${id_cliente}, '${cpf}');
+      (email, telefone, id_cliente, cpf)
+    VALUES('${email}',  '${telefone}', ${id_cliente}, '${cpf}');
     
        `);
   }
@@ -76,6 +76,16 @@ class RegisterModel {
       
       `);
   }
+  atualizarSenha(senha) {
+    return conexao.query(`
+    
+    INSERT INTO public.login
+      ( senha )
+    VALUES('${senha}');
+    
+       `);
+  }
+
 }
 
 module.exports = RegisterModel;
