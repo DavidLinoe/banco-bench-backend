@@ -2,7 +2,7 @@ const LoginModel = require("../models/loginModel");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
-
+const nodemailer = require("nodemailer")
 const loginModel = new LoginModel();
 
 class LoginService {
@@ -44,6 +44,55 @@ class LoginService {
 
           const verifyToken = jwt.verify(token, process.env.SECRET_PASS);
           console.log("Verify Token: ", verifyToken);
+
+  //  var nodemailer = require('nodemailer');
+
+  //* var transporter = nodemailer.createTransport({
+  //*    //? service: 'gmail',
+  //*    host: "smtp.gmail.com",
+  //*    port: 587,
+  //*    auth: {
+  //*    user: 'bancobenchbrasil@gmail.com',
+  //*    pass: 'bancobench123$'
+  //* }
+  //*});
+
+  //!var transporter = nodemailer.createTransport({
+  //!  host: "live.smtp.mailtrap.io",
+  //!  port: 587,
+  //!  auth: {
+  //!    user: "api",
+  //!    pass: "fdfa36c1a56e8dffc0fd8eaf7c4256a1"
+  //!  }
+  //!});
+
+//todo  var transporter = nodemailer.createTransport({
+//todo    host: "sandbox.smtp.mailtrap.io", //!sandbox
+//todo    port: 2525,
+//todo    auth: {
+//todo      user: "7b23473d2a1597",
+//todo      pass: "38f304e8c5d596"
+//todo    }
+//todo  });
+
+//todo   var mailOptions = {
+//todo     from: 'bancobenchbrasil@gmail.com',
+//todo     to: 'david@gmail.com',
+//todo     subject: 'Alteração De Senha Bench',
+//todo     html: '<h1>Sua nova senha é </h1><br><p>2AF5&%2345</p><br>você poderá alterar depois<a href="http://localhost:4200/" >logar com nova senha!</a>'
+//todo   };
+
+//todo   transporter.sendMail(mailOptions, function(error, info){
+//todo     if (error) {
+//todo       console.log(error);
+//todo     } else {
+//todo       console.log('Email sent: ' + info.response);
+//todo     }
+//todo   });
+
+
+
+
 
           return res.status(200).json({ mensagem: "Usuario Enviado", token });
         } else {
