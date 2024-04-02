@@ -3,6 +3,8 @@ const RegisterController = require("./RegisterController");
 const UserController = require("./UserController");
 const VerificarChaveController = require("./VerificarChaveController");
 const BalanceController = require("./BalanceController");
+const PerfilController = require("./PerfilController")
+const RecuperarController = require("./RecuperarController")
 
 module.exports = {
   LoginController,
@@ -10,4 +12,6 @@ module.exports = {
   UserController,
   VerificarChaveController,
   BalanceController,
+  PerfilController,
+  RecuperarController,
 };
